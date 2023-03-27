@@ -26,8 +26,5 @@ function interceptXHR() {
   };
 }
 
-const main = () => {
-  interceptXHR();
-};
-
-main();
+// 开始拦截请求
+interceptXHR();
