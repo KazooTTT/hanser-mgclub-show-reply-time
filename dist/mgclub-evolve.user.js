@@ -13,7 +13,8 @@
 
   const config = {
     // 接口url
-    getPost: "https://2550505.com/post/list"
+    getPost: "https://2550505.com/post/list",
+    timeout: 500
   };
   const getBottomSelectorByPostId = (id) => `.post-brief:has(.content .title[href="/postDetails/${id}"]) .top .post-user .bottom`;
   const getTopSelectorByPostId = (id) => `.post-brief:has(.content .title[href="/postDetails/${id}"]) .top`;
@@ -40,7 +41,7 @@
         appendResultToDom(result);
         clearInterval(timer);
       }
-    }, 1e3);
+    }, config.timeout);
   };
   const getSpanElement = (lastReplyTime, attrName) => {
     const span = document.createElement("span");

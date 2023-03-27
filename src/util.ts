@@ -1,3 +1,5 @@
+import { config } from "./config";
+
 /**
  * @description: postId对应bottom selector
  * @param {string} id
@@ -56,7 +58,7 @@ export const handleResult = (result: PostItem[]) => {
       appendResultToDom(result);
       clearInterval(timer);
     }
-  }, 1000);
+  }, config.timeout);
 };
 
 /**
