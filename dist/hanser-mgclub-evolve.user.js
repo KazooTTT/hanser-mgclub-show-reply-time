@@ -21,12 +21,12 @@
   function appendResultToDom(result) {
     let attrName;
     result == null ? void 0 : result.forEach((item) => {
-      var _a;
+      var _a, _b;
       const { id, last_reply_time } = item;
       const topEle = document.querySelector(getTopSelectorByPostId(id));
       const bottomEle = document.querySelector(getBottomSelectorByPostId(id));
       if (!attrName) {
-        attrName = ((_a = (bottomEle == null ? void 0 : bottomEle.childNodes[0]).attributes.item(0)) == null ? void 0 : _a.name) ?? "";
+        attrName = (_b = (_a = (bottomEle == null ? void 0 : bottomEle.childNodes[0]).attributes.item(0)) == null ? void 0 : _a.name) != null ? _b : "";
       }
       const lastReplyTimeElement = getSpanElement(last_reply_time, attrName);
       topEle == null ? void 0 : topEle.appendChild(lastReplyTimeElement);
