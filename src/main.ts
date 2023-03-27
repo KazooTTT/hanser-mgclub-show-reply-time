@@ -1,23 +1,34 @@
-import { getSpanElement } from "./util";
 // @ts-ignore isolatedModules
+import { config } from "./config";
+import { handleResult } from "./util";
 
-// Intercept all requests
-(XMLHttpRequest.prototype as NewXMLHttpRequest).originalSend =
-  XMLHttpRequest.prototype.send;
-XMLHttpRequest.prototype.send = function () {
-  const xhr = this as NewXMLHttpRequest;
-  let result = [] as PostItem[];
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.responseURL.startsWith("https://2550505.com/post/list")) {
-        const response = JSON.parse(xhr.response);
-        result = response.result;
-        console.log("%c Line:15 🍅 result", "color:#b03734", result);
+/**
+ * @description: 重写XMLHttpRequest send方法(实现请求拦截)
+ * @return {*}
+ */
+function interceptXHR() {
+  // 保存原始send方法
+  (XMLHttpRequest.prototype as NewXMLHttpRequest).originalSend = XMLHttpRequest.prototype.send;
+  // 重写send方法
+  XMLHttpRequest.prototype.send = function () {
+    const xhr = this as NewXMLHttpRequest;
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        // save the response
+        if (xhr.responseURL.startsWith(config.getPost)) {
+          const response = JSON.parse(xhr.response);
+          handleResult(response.result)
+        }
       }
-    }
+    };
+    xhr.originalSend.apply(xhr, arguments);
   };
-  xhr.originalSend.apply(xhr, arguments)
+}
 
-};
 
+const main = () => {
+  interceptXHR()
+}
+
+main()
 
