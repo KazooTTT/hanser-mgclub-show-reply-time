@@ -1,9 +1,10 @@
 // ==UserScript==
-// @name         mgclub-evolve
+// @name         hanser-mgclub-evolve
 // @namespace    https://github.com/KazooTTT/mgclub-evolve
 // @version      0.0.1
 // @author       KazooTTT
 // @description  展示毛怪俱乐部每个帖子最新的回复时间
+// @license      MIT
 // @icon         https://github.com/kazoottt.png
 // @match        https://2550505.com/
 // ==/UserScript==
@@ -12,7 +13,6 @@
   'use strict';
 
   const config = {
-    // 接口url
     getPost: "https://2550505.com/post/list",
     timeout: 500
   };

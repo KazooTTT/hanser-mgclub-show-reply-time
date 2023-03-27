@@ -12,6 +12,7 @@ export default defineConfig({
         match: ["https://2550505.com/"],
         author: "KazooTTT",
         description: "展示毛怪俱乐部每个帖子最新的回复时间",
+        license: "MIT",
         version: "0.0.1",
       },
     }),
