@@ -8,7 +8,8 @@ import { handleResult } from "./util";
  */
 function interceptXHR() {
   // 保存原始send方法
-  (XMLHttpRequest.prototype as NewXMLHttpRequest).originalSend = XMLHttpRequest.prototype.send;
+  (XMLHttpRequest.prototype as NewXMLHttpRequest).originalSend =
+    XMLHttpRequest.prototype.send;
   // 重写send方法
   XMLHttpRequest.prototype.send = function () {
     const xhr = this as NewXMLHttpRequest;
@@ -17,7 +18,7 @@ function interceptXHR() {
         // save the response
         if (xhr.responseURL.startsWith(config.getPost)) {
           const response = JSON.parse(xhr.response);
-          handleResult(response.result)
+          handleResult(response.result);
         }
       }
     };
@@ -25,10 +26,8 @@ function interceptXHR() {
   };
 }
 
-
 const main = () => {
-  interceptXHR()
-}
+  interceptXHR();
+};
 
-main()
-
+main();
