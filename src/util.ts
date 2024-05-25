@@ -66,13 +66,26 @@ export const handleResult = (result: PostItem[]) => {
  * @return {HTMLSpanElement}
  */
 export const getSpanElement = (
-  lastReplyTime: string,
+  lastReplyTime: string, // 格式2024-05-25 20:16:09 
   attrName: string
 ): HTMLSpanElement => {
   // create span element
   const span = document.createElement("span");
   span.className = "post-time";
-  span.innerText = lastReplyTime;
+  let currentTime = new Date();
+  let lastReplyDate = new Date(lastReplyTime); // assuming lastReplyTime is a valid date string
+  let diffInSeconds = Math.floor((currentTime.getTime() - lastReplyDate.getTime()) / 1000);
+
+  if (diffInSeconds < 60) {
+    span.innerText = `${diffInSeconds}秒前`;
+  } else if (diffInSeconds < 3600) {
+    let minutes = Math.floor(diffInSeconds / 60);
+    let seconds = diffInSeconds % 60;
+    span.innerText = `${minutes}分钟${seconds}秒前`;
+  } else {
+    span.innerText = lastReplyTime;
+  }
+
   span.style.alignSelf = "end";
   span.setAttribute(attrName, "");
   return span;

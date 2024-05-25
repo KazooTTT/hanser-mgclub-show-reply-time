@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         hanser-mgclub-evolve
 // @namespace    https://github.com/KazooTTT/mgclub-evolve
-// @version      0.0.1
+// @version      0.0.2
 // @author       KazooTTT
 // @description  展示毛怪俱乐部每个帖子最新的回复时间
 // @license      MIT
@@ -46,7 +46,18 @@
   const getSpanElement = (lastReplyTime, attrName) => {
     const span = document.createElement("span");
     span.className = "post-time";
-    span.innerText = lastReplyTime;
+    let currentTime = /* @__PURE__ */ new Date();
+    let lastReplyDate = new Date(lastReplyTime);
+    let diffInSeconds = Math.floor((currentTime.getTime() - lastReplyDate.getTime()) / 1e3);
+    if (diffInSeconds < 60) {
+      span.innerText = `${diffInSeconds}秒前`;
+    } else if (diffInSeconds < 3600) {
+      let minutes = Math.floor(diffInSeconds / 60);
+      let seconds = diffInSeconds % 60;
+      span.innerText = `${minutes}分钟${seconds}秒前`;
+    } else {
+      span.innerText = lastReplyTime;
+    }
     span.style.alignSelf = "end";
     span.setAttribute(attrName, "");
     return span;
