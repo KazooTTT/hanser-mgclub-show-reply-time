@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         毛怪俱乐部显示最新回复时间
 // @namespace    https://github.com/KazooTTT/mgclub-evolve
-// @version      0.0.3
+// @version      0.0.4
 // @author       KazooTTT
-// @description  展示毛怪俱乐部每个帖子最新的回复时间
+// @description  展示毛怪俱乐部(2550505.com)每个帖子最新的回复时间
 // @license      MIT
 // @icon         https://cdn.ihan.club/club.ico
 // @match        https://2550505.com/
@@ -16,8 +16,8 @@
     getPost: "https://2550505.com/post/list",
     timeout: 500
   };
-  const getBottomSelectorByPostId = (id) => `.post-brief:has(.content .title[href="/postDetails/${id}"]) .top .post-user .bottom`;
-  const getTopSelectorByPostId = (id) => `.post-brief:has(.content .title[href="/postDetails/${id}"]) .top`;
+  const getBottomSelectorByPostId = (id) => `.post-brief:has(.content .title[href="/post/${id}"]) .top .post-user .bottom`;
+  const getTopSelectorByPostId = (id) => `.post-brief:has(.content .title[href="/post/${id}"]) .top`;
   function appendResultToDom(result) {
     let attrName;
     result == null ? void 0 : result.forEach((item) => {
@@ -48,7 +48,9 @@
     span.className = "post-time";
     let currentTime = /* @__PURE__ */ new Date();
     let lastReplyDate = new Date(lastReplyTime);
-    let diffInSeconds = Math.floor((currentTime.getTime() - lastReplyDate.getTime()) / 1e3);
+    let diffInSeconds = Math.floor(
+      (currentTime.getTime() - lastReplyDate.getTime()) / 1e3
+    );
     if (diffInSeconds < 60) {
       span.innerText = `${diffInSeconds}秒前`;
     } else if (diffInSeconds < 3600) {

@@ -5,14 +5,14 @@ import { config } from "./config";
  * @param {string} id
  */
 const getBottomSelectorByPostId = (id: string | number) =>
-  `.post-brief:has(.content .title[href="/postDetails/${id}"]) .top .post-user .bottom`;
+  `.post-brief:has(.content .title[href="/post/${id}"]) .top .post-user .bottom`;
 
 /**
  * @description: postId对应top selector
  * @param {string} id
  */
 const getTopSelectorByPostId = (id: string | number) =>
-  `.post-brief:has(.content .title[href="/postDetails/${id}"]) .top`;
+  `.post-brief:has(.content .title[href="/post/${id}"]) .top`;
 
 /**
  * @description:将请求结果插入到dom中
@@ -66,7 +66,7 @@ export const handleResult = (result: PostItem[]) => {
  * @return {HTMLSpanElement}
  */
 export const getSpanElement = (
-  lastReplyTime: string, // 格式2024-05-25 20:16:09 
+  lastReplyTime: string, // 格式2024-05-25 20:16:09
   attrName: string
 ): HTMLSpanElement => {
   // create span element
@@ -74,7 +74,9 @@ export const getSpanElement = (
   span.className = "post-time";
   let currentTime = new Date();
   let lastReplyDate = new Date(lastReplyTime); // assuming lastReplyTime is a valid date string
-  let diffInSeconds = Math.floor((currentTime.getTime() - lastReplyDate.getTime()) / 1000);
+  let diffInSeconds = Math.floor(
+    (currentTime.getTime() - lastReplyDate.getTime()) / 1000
+  );
 
   if (diffInSeconds < 60) {
     span.innerText = `${diffInSeconds}秒前`;

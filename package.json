@@ -1,7 +1,8 @@
 {
   "name": "hanser-mgclub-evolve",
+  "description": "毛怪俱乐部(2550505.com)显示最新回复时间",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
