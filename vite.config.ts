@@ -7,7 +7,7 @@ export default defineConfig({
     monkey({
       entry: "src/main.ts",
       userscript: {
-        icon: "https://cdn.ihan.club/club.ico",
+        icon: "https://cdn.2550505.com/share/legacy-sso/logo-apple-apple-touch-icon-72x72.png",
         name: "毛怪俱乐部显示最新回复时间",
         namespace: "https://github.com/KazooTTT/mgclub-evolve",
         match: ["https://2550505.com/"],

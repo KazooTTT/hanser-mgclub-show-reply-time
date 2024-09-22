@@ -5,7 +5,7 @@
 // @author       KazooTTT
 // @description  展示毛怪俱乐部(2550505.com)每个帖子最新的回复时间
 // @license      MIT
-// @icon         https://cdn.ihan.club/club.ico
+// @icon         https://cdn.2550505.com/share/legacy-sso/logo-apple-apple-touch-icon-72x72.png
 // @match        https://2550505.com/
 // ==/UserScript==
 
